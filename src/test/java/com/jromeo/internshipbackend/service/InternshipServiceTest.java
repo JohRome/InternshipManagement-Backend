@@ -2,6 +2,7 @@ package com.jromeo.internshipbackend.service;
 
 import com.jromeo.internshipbackend.dto.InternshipDTO;
 import com.jromeo.internshipbackend.entity.Internship;
+import com.jromeo.internshipbackend.exception.InternshipNotFoundException;
 import com.jromeo.internshipbackend.repository.InternshipRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 class InternshipServiceTest {
@@ -53,4 +55,17 @@ class InternshipServiceTest {
         // Then
         assertEquals(dto.getId(), createdInternship.getId());
     }
+
+    @Test
+    public void should_throw_internship_not_found_exception_when_internship_not_found() {
+        // Given
+        when(internshipRepository.findById(1))
+                .thenReturn(java.util.Optional.empty());
+
+        // When
+        // Then
+        assertThrows(InternshipNotFoundException.class,
+                () -> internshipService.getInternship(1));
+    }
+
 }
