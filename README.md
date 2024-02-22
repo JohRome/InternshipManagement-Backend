@@ -11,9 +11,10 @@
 + To get the full experience, visit: [InternshipManagement-frontend](https://github.com/JohRome/InternshipManagement-Frontend) and follow the given instructions.
 + Although, if you want to try this web service on **localhost**, clone this repo and make the **following changes**:
   + In [application.properties](src/main/resources/application.properties), set these values instead:
-  + ``spring.datasource.url=jdbc:mysql://localhost:3306/internship
-    spring.datasource.username=your_username
-    spring.datasource.password=your_password``
+  + ``server.port=8080``
+  + ``spring.datasource.url=jdbc:mysql://localhost:3306/internship``
+  + ``spring.datasource.username=your_username``
+  + ``spring.datasource.password=your_password``
 + Then right-click on InternshipBackendApplication and hit run.
 + To try the endpoints, continue reading...
 
