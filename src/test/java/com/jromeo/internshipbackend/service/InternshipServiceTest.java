@@ -18,8 +18,8 @@ import static org.mockito.Mockito.*;
 class InternshipServiceTest {
 
     /**
-     * Mockito is used to mock InternshipService's dependencies, such as InternshipRepository and ModelMapper so that
-     * no live CRUD-operation tests are made on MySQL database.
+     * Mockito is used to mock InternshipService's dependencies, such as InternshipRepository and ModelMapper, so that
+     * no live CRUD-operation tests are made on the live MySQL database hosted on AWS.
      */
     @InjectMocks
     private InternshipService internshipService;
