@@ -19,6 +19,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -59,6 +60,7 @@ class InternshipControllerTest {
 
     @Test
     void should_create_internship() {
+        // Given
         Internship internship = new Internship(
                 1,
                 "Johan AB",
@@ -67,6 +69,8 @@ class InternshipControllerTest {
                 false
         );
 
+        // When
+        // Then
         given()
                 .contentType(ContentType.JSON)
                 .body(internship)
@@ -103,4 +107,88 @@ class InternshipControllerTest {
                 .body(".", hasSize(2));
     }
 
+    @Test
+    void should_get_internship_by_id() {
+        Internship internship = new Internship(
+                1337,
+                "Johan AB",
+                "Johan provar TestContainers",
+                "testcontainers.com",
+                false
+        );
+        Internship savedInternship = internshipRepository.save(internship);
+
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/api/internships/" + savedInternship.getId())
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    void should_update_internship() {
+
+        Internship internship = new Internship(
+                1337,
+                "Johan AB",
+                "Johan provar TestContainers",
+                "testcontainers.com",
+                false
+        );
+        Internship savedInternship = internshipRepository.save(internship);
+
+        Internship updatedInternship = new Internship(
+                savedInternship.getId(),
+                "Johan AB",
+                "Johan är uppdaterad och stark som en oxe",
+                "testcontainers.com",
+                true
+        );
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(updatedInternship)
+                .when()
+                .put("/api/internships/" + savedInternship.getId())
+                .then()
+                .statusCode(200);
+
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/api/internships/" + savedInternship.getId())
+                .then()
+                .statusCode(200)
+                .body("companyName", equalTo("Johan AB"))
+                .body("description", equalTo("Johan är uppdaterad och stark som en oxe"));
+    }
+
+    @Test
+    void should_delete_internship() {
+        Internship internship = new Internship(
+                13,
+                "Brutus AB",
+                "Högg Kejsaren flera gånger med mina kumpaner",
+                "Cassius",
+                true
+        );
+
+        internshipRepository.save(internship);
+
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .delete("/api/internships/" + internship.getId())
+                .then()
+                .statusCode(200);
+
+
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/api/internships/" + internship.getId())
+                .then()
+                .statusCode(404);
+    }
 }
