@@ -6,6 +6,10 @@
 + During my project I learned a great deal about AWS (which by the way has caused me "some" hair loss, due to the fact that things are easily broken in AWS when not taking caution). I also learned a great deal about Mockito and TestContainers.
 + It was really cool to make a frontend using React. [This InternshipManagement-frontend](https://github.com/JohRome/InternshipManagement-Frontend) is the client. Please use that when using this web service.
 
+## Installation and Usage
++ No installation needed since this web service is hosted on AWS.
++ To get the full experience, visit: [InternshipManagement-frontend](https://github.com/JohRome/InternshipManagement-Frontend) and follow the given instructions.
++ 
 ## Credits
 * Emil Sivertsson - Encouraged me to try out TestContainers and for being a "bollplank" when times were bitter and sweet.
 * ChatGPT - Used for inspiration and clarification.
