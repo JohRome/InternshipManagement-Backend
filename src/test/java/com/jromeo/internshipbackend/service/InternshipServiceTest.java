@@ -16,6 +16,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 class InternshipServiceTest {
+
+    /**
+     * Mockito is used to mock InternshipService's dependencies, such as InternshipRepository and ModelMapper so that
+     * no live CRUD-operation tests are made on MySQL database.
+     */
     @InjectMocks
     private InternshipService internshipService;
     @Mock

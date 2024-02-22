@@ -13,6 +13,12 @@ import java.util.List;
 @RequestMapping("/api/internships")
 public class InternshipController {
 
+    /**
+     * Simple RestController to set up the API, allowing the client to manipulate Internships.
+     * Client receives a Response Entity of type <InternshipDTO>(<String> for DELETE request)
+     * for best practice, alongside a suitable http status code.
+     */
+
     private final InternshipService internshipService;
 
     public InternshipController(InternshipService internshipService) {

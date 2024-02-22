@@ -26,6 +26,11 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 @Testcontainers
 class InternshipControllerTest {
 
+    /**
+     * TestContainer along with other dependencies, allows to spin up a Docker Container from a MySQL image, version 8.0.3.
+     * InternshipController's GET/POST/PUT/DELETE requests are being tested.
+     */
+
     @LocalServerPort
     private Integer port;
 

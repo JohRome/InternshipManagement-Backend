@@ -12,6 +12,10 @@ import java.util.List;
 @Service
 public class InternshipService {
     private final InternshipRepository internshipRepository;
+
+    /**
+     * ModelMapper dependency makes it easy to map from Internship to InternshipDTO and vice versa.
+     */
     private final ModelMapper mapper;
 
     public InternshipService(InternshipRepository internshipRepository, ModelMapper mapper) {
@@ -60,6 +64,9 @@ public class InternshipService {
         internshipRepository.delete(deletedInternship);
     }
 
+    /**
+     * Method for finding an Internship from MySQL database or throw custom-made exception if id isn't found.
+     */
     public Internship findInternshipOrThrowException(Integer id) {
         return internshipRepository.findById(id)
                 .orElseThrow(() -> new InternshipNotFoundException("Internship with id: " + id + " not found"));

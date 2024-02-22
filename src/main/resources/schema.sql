@@ -1,3 +1,4 @@
+# Table created for TestContainers to work
 create table if not exists internship (
     id integer primary key not null auto_increment,
     companyName varchar(255) not null,
