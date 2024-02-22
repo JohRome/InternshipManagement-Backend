@@ -19,7 +19,7 @@ public class InternshipController {
         this.internshipService = internshipService;
     }
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<InternshipDTO> createInternship(@RequestBody InternshipDTO dto) {
         InternshipDTO createdInternship = internshipService.createInternship(dto);
 
@@ -33,7 +33,7 @@ public class InternshipController {
         return new ResponseEntity<>(fetchedInternship, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<List<InternshipDTO>> getAllInternships() {
         List<InternshipDTO> fetchedInternships = internshipService.getAllInternships();
 
